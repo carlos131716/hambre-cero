@@ -1,0 +1,13 @@
+<h1 class="text-center text-2xl font-bold text-teal-500">Detalles del Usuario</h1>
+
+<div class="mt-4">
+  <p><strong>Nombre de Usuario:</strong> <%= @user.username %></p>
+  <p><strong>Correo Electrónico:</strong> <%= @user.email %></p>
+  <p><strong>Rol:</strong> 
+    <%= @user.role == 0 ? "Administrador" : (@user.role == 1 ? "Donador" : "Jefe de Familia") %>
+  </p>
+  <p><strong>Fecha de Creación:</strong> <%= @user.created_at.strftime("%B %d, %Y") %></p>
+  <p><strong>Última Actualización:</strong> <%= @user.updated_at.strftime("%B %d, %Y") %></p>
+</div>
+
+<%= link_to "Volver a la lista", users_path, class: "mt-4 inline-block bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600" %>

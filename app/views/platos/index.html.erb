@@ -1,0 +1,52 @@
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h1 class="text-center text-2xl font-bold text-teal-500">LISTADO DE PLATOS</h1>
+    </div>
+  </div>
+</div>
+<table class="table-auto w-[80%] m-auto mt-3 border-collapse border border-gray-300">
+  <thead class="bg-gray-100">
+    <tr>
+      <th class="border border-gray-300 px-4 py-2 text-left">Nombre</th>
+      <th class="border border-gray-300 px-4 py-2 text-center">Editar</th>
+      <th class="border border-gray-300 px-4 py-2 text-center">Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @Platos.any? %>
+        <% @Platos.each do |plato| %>
+        <tr id="<%= dom_id(plato) %>" class="hover:bg-gray-100">
+            <td class="border border-gray-300 px-4 py-2"><%= plato.name_comida %></td>
+            <td class="border border-gray-300 px-4 py-2 text-center">
+            <%= link_to "Edit", edit_plato_path(plato), class: "bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm" %>
+            </td>
+            <td class="border border-gray-300 px-4 py-2 text-center">
+            <%= link_to "Delete", plato_path(plato), data: { turbo_method: :delete, turbo_confirm: "Alerta, ¿estás seguro?" }, class: "bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm" %>
+            </td>
+        </tr>
+        <% end %>
+    <% else %>
+        <tr>
+        <td colspan="3" class="text-center border border-gray-300 px-4 py-2">
+            No hay platos disponibles
+        </td>
+        </tr>
+    <% end %>
+    </tbody>
+
+</table>
+
+
+
+<div class="container mx-auto mt-6">
+  <div class="flex justify-center">
+    <%= link_to new_plato_path, class: "flex items-center bg-green-500 text-white px-5 py-3 rounded-lg shadow-lg hover:bg-green-600 transition duration-300 ease-in-out" do %>
+      <%= image_tag 'icons/add.svg', class: "w-8 h-8 mr-3" %>
+      <span class="text-lg font-bold">Nuevo Plato</span>
+    <% end %>
+  </div>
+</div>
+
+

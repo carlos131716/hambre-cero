@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  cantidad: 1
+  created_at: 2024-12-26 22:37:56
+
+two:
+  user: two
+  cantidad: 1
+  created_at: 2024-12-26 22:37:56

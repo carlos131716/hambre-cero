@@ -1,0 +1,58 @@
+<div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+  <h1 class="text-2xl font-bold text-teal-500 mb-6">Crear Usuario</h1>  
+
+  <%= form_with(model: @user, local: true, class: "max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md") do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation" class="mb-4 bg-red-100 text-red-700 p-4 rounded-md">
+        <h2 class="font-semibold"><%= pluralize(@user.errors.count, "error") %> prohibió que este usuario se guardara:</h2>
+        <ul class="list-inside list-disc">
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-4">
+      <%= form.label :username, class: "block font-medium text-gray-700" %>
+      <%= form.text_field :username, class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :email, class: "block font-medium text-gray-700" %>
+      <%= form.email_field :email, class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :password, class: "block font-medium text-gray-700" %>
+      <%= form.password_field :password, class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :role, class: "block font-medium text-gray-700" %>
+      <%= form.select :role, 
+          [
+            ['Admin', User::ROLE_ADMIN], 
+            ['Donador', User::ROLE_DONADOR], 
+            ['Jefe de Familia', User::ROLE_FAMILY_HEAD]
+          ],
+          { include_blank: true },
+          class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+      %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :apellido_familia, class: "block font-medium text-gray-700" %>
+      <%= form.text_field :apellido_familia, class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :numero_integrantes, class: "block font-medium text-gray-700" %>
+      <%= form.number_field :numero_integrantes, class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500" %>
+    </div>
+
+    <div class="actions text-center">
+      <%= form.submit "Crear Usuario", class: "bg-teal-500 text-white py-2 px-6 rounded-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-300" %>
+    </div>
+  <% end %>
+</div>

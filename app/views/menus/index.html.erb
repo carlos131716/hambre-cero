@@ -1,0 +1,41 @@
+<div class="flex">
+  <!-- Lista de Platos -->
+  <div class="w-1/2 p-4">
+    <h2 class="text-xl font-bold mb-4">Platos del Día</h2>
+    <ul>
+        <% @platos.each do |plato| %>
+            <li class="mb-4 flex justify-between">
+                <span class="flex-1"><%= plato.name_comida %></span>
+                <form action="<%= add_plato_to_menu_menu_path(@menu) %>" method="POST" class="flex items-center">
+                    <%= csrf_meta_tags %>
+                    <input type="hidden" name="plato_id" value="<%= plato.id %>">
+                    <input type="number" name="cantidad" value="1" min="1" class="w-20 mr-2">
+                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Agregar al Menú</button>
+                </form>
+            </li>
+        <% end %>
+    </ul>
+  </div>
+
+  <!-- Menú del Día -->
+  <div class="w-1/2 p-4">
+    <h2 class="text-xl font-bold mb-4">Menú del Día</h2>
+    <ul>
+      <% @menu.platos.each do |plato| %>
+        <li class="flex justify-between mb-4">
+          <span class="flex-1"><%= plato.name_comida %></span>
+          <span class="flex-1"><%= plato.menu_platos.find_by(plato_id: plato.id).cantidad %></span>
+
+          <!-- Formulario para eliminar el plato del menú -->
+          <%= form_with url: eliminar_plato_menu_path(@menu), method: :delete, local: true, class: 'inline' do |form| %>
+            <%= csrf_meta_tags %>
+            <%= hidden_field_tag :plato_id, plato.id %>
+            <%= form.submit "Eliminar", class: "bg-red-500 text-white py-2 px-4 rounded" %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+
+  
+  </div>
+</div>

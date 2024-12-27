@@ -1,0 +1,38 @@
+<h1>Menú de <%= @menu.user.username %></h1> <!-- Mostrar el nombre del donador -->
+
+<h2>Platos disponibles</h2>
+
+<!-- Mostrar el límite de platos que se pueden recibir -->
+<p><strong>Límite de platos a recibir:</strong> <%= @numero_integrantes %></p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Plato</th>
+      <th class="text-center">Cantidad disponible</th>
+      <th class="text-center">Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @platos.each do |plato| %>
+      <tr>
+        <td><%= plato.name_comida %></td>
+        <td class="text-center"><%= @menu.menu_platos.find_by(plato_id: plato.id).cantidad %></td>
+        <td class="text-center">
+          <%= form_with url: recibir_plato_path(@menu), method: :post, local: true do |form| %>
+            <%= form.hidden_field :plato_id, value: plato.id %>
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="input-group" style="max-width: 200px;">
+                <span class="input-group-text">Cantidad</span>
+                <%= form.number_field :cantidad, min: 1, max: [@menu.menu_platos.find_by(plato_id: plato.id).cantidad, @numero_integrantes].min, value: 1, class: 'form-control' %>
+              </div>
+              <div>
+                <%= form.submit 'Recibir', class: 'btn btn-primary ms-2' %>
+              </div>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

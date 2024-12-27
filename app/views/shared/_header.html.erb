@@ -1,0 +1,32 @@
+<div class="flex justify-between items-center p-4 w-[90%] mx-auto" data-controller="menu">
+  
+  <!-- Mostrar nombre de usuario y redirigir dependiendo del rol -->
+  <% if current_user %>
+    <% if current_user.donador? %>
+      <%= link_to menus_path do %>
+        <h1 class="text-2xl font-bold text-teal-500">FOOD DONATION</h1>
+      <% end %>
+      <h1 class="text-2xl font-bold text-teal-500">Bienvenido, <%= current_user.username %></h1>
+    <% elsif current_user.admin? %>
+      <%= link_to users_path do %>
+        <h1 class="text-2xl font-bold text-teal-500">FOOD DONATION</h1>
+      <% end %>
+      <h1 class="text-2xl font-bold text-teal-500">Bienvenido, Administrador <%= current_user.username %></h1>
+    <% elsif current_user.family_head? %>
+      <%= link_to root_path do %>
+        <h1 class="text-2xl font-bold text-teal-500">FOOD DONATION</h1>
+      <% end %>
+      <h1 class="text-2xl font-bold text-teal-500">Bienvenido, Jefe de Familia <%= current_user.username %></h1>
+    <% end %>
+  <% else %>
+    <%= link_to root_path do %>
+      <h1 class="text-2xl font-bold text-teal-500">FOOD DONATION</h1>
+    <% end %>
+    <p>Bienvenido, usuario no registrado</p>
+  <% end %>
+
+  <!-- Estilo para pantallas grandes (escritorio) -->
+  <div class="hidden sm:block">
+    <%= render partial: 'shared/items' %>
+  </div>
+</div>

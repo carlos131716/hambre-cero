@@ -1,0 +1,5 @@
+<% flash.each do |key, value| %>
+  <div class="flash <%= key == 'notice' ? 'bg-green-500' : 'bg-red-500' %> text-white p-4 rounded mb-4" data-controller="flash">
+    <%= value %>
+  </div>
+<% end %>

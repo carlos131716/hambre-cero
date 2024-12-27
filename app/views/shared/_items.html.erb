@@ -1,0 +1,38 @@
+<div class="flex">
+  <ul class="flex items-center gap-2 justify-center h-full text-slate-950 mr-4">
+    <%if Current.user && Current.user.admin? %>
+      <li>
+        <%= link_to "Lista de Usuarios", users_path, class: "mx-2 py-2 font-semibold" %>
+      </li>
+      <li>
+        <%= link_to "Crear Usuario", new_user_path, class: "mx-2 py-2 font-semibold" %>
+      </li>
+    <% end %>
+
+    <% if Current.user && Current.user.donador? %>
+      <li>
+        <%= link_to "Crear Menú", menus_path , class: "mx-2 py-2 font-semibold" %>
+      </li>
+      <li>
+        <%= link_to "Crear Plato", new_plato_path, class: "mx-2 py-2 font-semibold" %>
+      </li>
+      <li>
+        <%= link_to "Lista de Platos", platos_path, class: "mx-2 py-2 font-semibold" %>
+      </li>
+    <% end %>
+
+    <% if Current.user && Current.user.family_head? %>
+    <% end %>
+  </ul>
+  <div class="border-l-2 border-teal-500 pl-2 px-4 flex items-center h-[50px]">
+    <div class="border-2 border-blue-400 px-4 py-2 rounded-lg hover:bg-blue-400 hover:text-slate-950 transition duration-200 ease-in-out ">
+      <% if !Current.user %>
+        <%= link_to "Login", login_path, class:"mx-2  font-semibold" %>
+      <% else %>
+        <%= link_to "Log out", session_path(Current.user.id), data: { turbo_method: :delete, turbo_confirm: "¿Está seguro?" }, class:"mx-2 font-semibold" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

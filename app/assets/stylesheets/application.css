@@ -1,0 +1,116 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+/* Estilo para el notice */
+.notice {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+  }
+  
+/* En tu archivo application.css o dentro de un bloque <style> en tu vista */
+.menu-list-item {
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-list-item-button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+}
+
+.menu-list-item-button:hover {
+  background-color: #2980b9;
+  transition: background-color 0.3s ease;
+}
+
+
+  
+
+/* Centrado de la tabla y márgenes */
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+h1, h2 {
+  text-align: center;
+  color: #333;
+}
+
+/* Estilo para la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  padding: 12px 15px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #eaeaea;
+}
+
+/* Estilo para el campo de cantidad */
+.input-group {
+  display: flex;
+  justify-content: center;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.input-group input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  width: 60px;
+  margin-right: 10px;
+}
+
+/* Estilo para el botón */
+button, .btn {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover, .btn:hover {
+  background-color: #0056b3;
+}
